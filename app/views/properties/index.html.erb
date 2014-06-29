@@ -1,41 +1,19 @@
-<h1>Listing properties</h1>
+<div class="row">
+  <div class="col-xs-12">
+    <h1>Listing properties</h1>
+  </div>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Business name</th>
-      <th>Street address</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Zip</th>
-      <th>Mdu</th>
-      <th>Units</th>
-      <th>Description</th>
-      <th>Belongs to</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+  <section id="properties">
     <% @properties.each do |property| %>
-      <tr>
-        <td><%= property.business_name %></td>
-        <td><%= property.street_address %></td>
-        <td><%= property.city %></td>
-        <td><%= property.state %></td>
-        <td><%= property.zip %></td>
-        <td><%= property.mdu %></td>
-        <td><%= property.units %></td>
-        <td><%= property.description %></td>
-        <td><%= property.belongs_to %></td>
-        <td><%= link_to 'Show', property %></td>
-        <td><%= link_to 'Edit', edit_property_path(property) %></td>
-        <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <div class="row">
+            <div class="col-xs-12">
+              <h3>Business name: <%= property.business_name %></h3>
+              <p><%= property.street_address %>, <%= property.city %>, <%= property.state %> <%= property.zip %></p>
+              <p><%= link_to 'Show', property %></p>
+            </div>
+        </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
+  </section>
 
 <%= link_to 'New Property', new_property_path %>

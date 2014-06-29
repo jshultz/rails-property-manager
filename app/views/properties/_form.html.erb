@@ -1,3 +1,12 @@
+<% if defined?(@property)
+
+     else
+
+       @property = Property.new
+
+   end
+   %>
+
 <%= form_for(@property) do |f| %>
   <% if @property.errors.any? %>
     <div id="error_explanation">
