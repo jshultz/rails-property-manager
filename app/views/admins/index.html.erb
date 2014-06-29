@@ -1,36 +1,61 @@
-<div class="row">
-  <div class="col-xs-12">
-    <h1>Admin Panel</h1>
-  </div>
-</div>
-
-<div class="row">
-  <ul class="nav nav-tabs" role="tablist">
-    <li class="active"><a href="#home" role="tab" data-toggle="tab">Home</a></li>
-    <li><a href="#profile" role="tab" data-toggle="tab">Add / Manage Properties</a></li>
-    <li><a href="#messages" role="tab" data-toggle="tab">Messages</a></li>
-    <li><a href="#settings" role="tab" data-toggle="tab">Settings</a></li>
-  </ul>
-</div>
-<div class="row">
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div class="tab-pane active" id="home">
-      <p>Welcome to the admin home</p>
+<div id="admin">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>Admin Panel</h1>
     </div>
-    <div class="tab-pane" id="profile">
+  </div>
 
-      <% @properties.each do |property| %>
-          <div class="row">
-            <div class="col-xs-12">
-              <h3>Business name: <%= property.business_name %></h3>
-              <p><%= property.street_address %>, <%= property.city %>, <%= property.state %> <%= property.zip %></p>
-              <p><%= link_to 'Show', property %></p>
-            </div>
+  <div class="row">
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="active"><a href="#home" role="tab" data-toggle="tab">Home</a></li>
+      <li><a href="#properties" role="tab" data-toggle="tab">Add / Manage Properties</a></li>
+      <li><a href="#messages" role="tab" data-toggle="tab">Messages</a></li>
+      <li><a href="#settings" role="tab" data-toggle="tab">Settings</a></li>
+    </ul>
+  </div>
+  <div class="row">
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div class="tab-pane active" id="home">
+        <p>Welcome to the admin home</p>
+      </div>
+      <div class="tab-pane" id="properties">
+
+        <div class="row">
+          <div class="col-xs-12">
+            <p class="newproperty"><strong>New Property: Click here to add a new property.</strong></p>
           </div>
-      <% end %>
+        </div>
+        <div id="newproperty">
+          <%= render 'properties/form', :locals => { @property => Property.new } %>
+        </div>
+
+
+        <% @properties.each do |property| %>
+            <div class="row">
+              <div class="col-xs-12">
+                <h3>Business name: <%= property.business_name %></h3>
+                <p><%= property.street_address %>, <%= property.city %>, <%= property.state %> <%= property.zip %></p>
+                <p><%= link_to 'Show', property %></p>
+              </div>
+            </div>
+        <% end %>
+      </div>
+      <div class="tab-pane" id="messages">messages...</div>
+      <div class="tab-pane" id="settings">settings...</div>
     </div>
-    <div class="tab-pane" id="messages">messages...</div>
-    <div class="tab-pane" id="settings">settings...</div>
   </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('.newproperty').on('click', function(e) {
+            $('#newproperty').slideToggle();
+        })
+
+        $('.name').on('click', function(e) {
+            $(this).siblings('.actions').toggle();
+        })
+
+    });
+</script>
