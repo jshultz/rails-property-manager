@@ -7,7 +7,10 @@
   <section id="properties">
     <% @properties.each do |property| %>
         <div class="row">
-            <div class="col-xs-12">
+          <div class="col-xs-2">
+            <%= image_tag property.property_photo.url(:thumb) %>
+          </div>
+            <div class="col-xs-10">
               <h3>Business name: <%= property.business_name %></h3>
               <p><%= property.street_address %>, <%= property.city %>, <%= property.state %> <%= property.zip %></p>
               <p><%= link_to 'Show', property %></p>
