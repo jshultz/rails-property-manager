@@ -13,13 +13,28 @@
             <div class="col-xs-10">
               <h3>Business name: <%= property.business_name %></h3>
               <p><%= property.street_address %>, <%= property.city %>, <%= property.state %> <%= property.zip %></p>
-              <p><%= link_to 'Show', property %><span class="openticket">Open a Ticket</span> </p>
+              <p><span data-property="<%= property.id %>" class="btn btn-default navbar-btn openticket">Open a Ticket</span> </p>
             </div>
         </div>
         <div class="row">
-          <%= render :partial => '/tickets/form', locals: {  ticket: Ticket.new, propertyid: property.id } %>
+          <div class="col-xs-12 ticketrow" data-property="<%= property.id %>">
+            <%= render :partial => '/tickets/form', locals: {  ticket: Ticket.new, propertyid: property.id } %>
+          </div>
         </div>
     <% end %>
   </section>
 
-<%= link_to 'New Property', new_property_path %>
+
+<script>
+    $(document).ready(function() {
+        $('.openticket').on('click', function(e) {
+            var property = $(this).data('property');
+            console.log(property);
+            $('.ticketrow[data-property="' + property +'"]').slideToggle();
+
+        })
+
+    });
+</script>
+
+

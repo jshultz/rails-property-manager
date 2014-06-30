@@ -23,7 +23,7 @@
 
         <div class="row">
           <div class="col-xs-12">
-            <p class="newproperty"><strong>New Property: Click here to add a new property.</strong></p>
+            <p class="newproperty btn btn-default navbar-btn">Add A Property</p>
           </div>
         </div>
         <div id="newproperty">
@@ -54,10 +54,6 @@
     $(document).ready(function() {
         $('.newproperty').on('click', function(e) {
             $('#newproperty').slideToggle();
-        })
-
-        $('.name').on('click', function(e) {
-            $(this).siblings('.actions').toggle();
         })
 
     });

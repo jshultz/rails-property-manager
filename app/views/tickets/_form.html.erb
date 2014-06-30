@@ -1,5 +1,3 @@
-propertyid: <%= propertyid %>
-
 <%= form_for(ticket) do |f| %>
   <% if ticket.errors.any? %>
     <div id="error_explanation">
@@ -12,20 +10,34 @@ propertyid: <%= propertyid %>
     </div>
   <% end %>
 
-    <%= f.hidden_field :property_id, :value => :propertyid%>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :property_id %><br>
-    <%= f.number_field :property_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= f.hidden_field :property_id, :value => propertyid%>
+    <div class="row form-group">
+      <div class="col-xs-6">
+        <div class="input-group">
+          <span class="input-group-addon"><%= f.label :name %></span>
+          <%= f.text_field :name, class:"form-control" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-xs-12">
+        <div class="input-group">
+          <span class="input-group-addon"><%= f.label :description %></span>
+          <%= f.text_area :description, class:"form-control" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-xs-12">
+        <div class="input-group">
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
 <% end %>
