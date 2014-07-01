@@ -17,10 +17,16 @@
             </div>
         </div>
         <div class="row ticketsrow">
-          <% property.tickets.each do |ticket| %>
-              <h3>Ticket Name: <%= ticket.name %></h3>
-              <p><strong>Description: </strong> <%= ticket.description %></p>
-          <% end %>
+          <div class="col-xs-8 col-xs-push-2">
+            <div class="row">
+              <div class="col-xs-12">
+                <% property.tickets.each do |ticket| %>
+                    <h3>Ticket Name: <%= ticket.name %></h3>
+                    <p><strong>Description: </strong> <%= ticket.description %></p>
+                <% end %>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="row ticketrow" data-property="<%= property.id %>">
           <div class="col-xs-12">

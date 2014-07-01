@@ -4,7 +4,6 @@ class PropertiesController < ApplicationController
   # GET /properties
   # GET /properties.json
   def index
-    # @properties = Property.all.joins(:tickets)
     @properties = Property.joins('LEFT JOIN tickets ON tickets.property_id = properties.id GROUP BY properties.id')
   end
 
