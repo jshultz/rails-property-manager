@@ -33,8 +33,10 @@
 
         <% @properties.each do |property| %>
             <div class="row">
-              <div class="col-xs-2">
-                <%= image_tag property.property_photo.url(:thumb) %>
+              <div class="col-xs-1">
+                <span class="opentickets">
+                  <%= property.tickets.size %>
+                </span>
               </div>
               <div class="col-xs-9 col-xs-push-1">
                 <h3>Business name: <%= property.business_name %></h3>
