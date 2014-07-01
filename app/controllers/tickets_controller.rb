@@ -26,9 +26,11 @@ class TicketsController < ApplicationController
   def create
     @ticket = Ticket.new(ticket_params)
 
+    @ticket.user_id = current_user.id
+
     respond_to do |format|
       if @ticket.save
-        format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
+        format.html { redirect_to :back, notice: 'Ticket was successfully created.' }
         format.json { render :show, status: :created, location: @ticket }
       else
         format.html { render :new }
@@ -69,6 +71,6 @@ class TicketsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ticket_params
-      params.require(:ticket).permit(:name, :description, :property_id)
+      params.require(:ticket).permit(:name, :description, :property_id, :user_id)
     end
 end
