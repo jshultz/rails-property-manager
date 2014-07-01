@@ -16,8 +16,14 @@
               <p><span data-property="<%= property.id %>" class="btn btn-default navbar-btn openticket">Open a Ticket</span> </p>
             </div>
         </div>
-        <div class="row">
-          <div class="col-xs-12 ticketrow" data-property="<%= property.id %>">
+        <div class="row ticketsrow">
+          <% property.tickets.each do |ticket| %>
+              <h3>Ticket Name: <%= ticket.name %></h3>
+              <p><strong>Description: </strong> <%= ticket.description %></p>
+          <% end %>
+        </div>
+        <div class="row ticketrow" data-property="<%= property.id %>">
+          <div class="col-xs-12">
             <%= render :partial => '/tickets/form', locals: {  ticket: Ticket.new, propertyid: property.id } %>
           </div>
         </div>
