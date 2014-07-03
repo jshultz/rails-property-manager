@@ -27,6 +27,8 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new(ticket_params)
 
     @ticket.user_id = current_user.id
+    @ticket.owner_open = true
+    @ticket.user_open = true
 
     respond_to do |format|
       if @ticket.save
@@ -71,6 +73,6 @@ class TicketsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ticket_params
-      params.require(:ticket).permit(:name, :description, :property_id, :user_id)
+      params.require(:ticket).permit(:name, :description, :property_id, :user_id, :user_open, :owner_open)
     end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140629155552) do
+ActiveRecord::Schema.define(version: 20140701211940) do
 
   create_table "properties", force: true do |t|
     t.string   "business_name"
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20140629155552) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.boolean  "user_open"
+    t.boolean  "owner_open"
   end
 
   create_table "users", force: true do |t|

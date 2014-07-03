@@ -9,6 +9,7 @@
     <ul class="nav nav-tabs" role="tablist">
       <li class="active"><a href="#home" role="tab" data-toggle="tab">Home</a></li>
       <li><a href="#properties" role="tab" data-toggle="tab">Add / Manage Properties</a></li>
+      <li><a href="#tickets" role="tab" data-toggle="tab">Tickets</a></li>
       <li><a href="#messages" role="tab" data-toggle="tab">Messages</a></li>
       <li><a href="#settings" role="tab" data-toggle="tab">Settings</a></li>
     </ul>
@@ -29,22 +30,64 @@
         <div id="newproperty">
           <%= render 'properties/form', :locals => { @property => Property.new } %>
         </div>
-
-
         <% @properties.each do |property| %>
             <div class="row">
-              <div class="col-xs-1">
-                <span class="opentickets">
-                  <%= property.tickets.size %>
-                </span>
+              <div class="col-xs-12">
+                <div class="row">
+                  <div class="col-xs-1">
+                    <span class="opentickets">
+                      <%= property.tickets.size %>
+                    </span>
+                  </div>
+                  <div class="col-xs-9 col-xs-push-1">
+                    <h3>Business name: <%= property.business_name %></h3>
+                    <p><%= property.street_address %>, <%= property.city %>, <%= property.state %> <%= property.zip %></p>
+                    <p><%= link_to 'Show', property %></p>
+                  </div>
+                </div>
+                <div class="row ticketsrow">
+                  <div class="col-xs-8 col-xs-push-2">
+                    <div class="row">
+                      <div class="col-xs-12">
+                        <% property.tickets.each do |ticket| %>
+                            <% if ticket.user_id == current_user.id %>
+                                <h3>Ticket Name: <%= ticket.name %></h3>
+                                <p><strong>Description: </strong> <%= ticket.description %></p>
+                            <% end %>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="col-xs-9 col-xs-push-1">
-                <h3>Business name: <%= property.business_name %></h3>
-                <p><%= property.street_address %>, <%= property.city %>, <%= property.state %> <%= property.zip %></p>
-                <p><%= link_to 'Show', property %></p>
-              </div>
+
             </div>
+
         <% end %>
+      </div>
+      <div class="tab-pane" id="tickets">
+
+        <div class="row">
+          <div class="col-xs-12">
+            <h3>Open Tickets</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <% @properties.each do |property| %>
+
+                <% property.tickets.each do |ticket| %>
+                    <% if (ticket.user_id == current_user.id) && ( ticket.user_open == true && ticket.owner_open == true ) %>
+                        <h3>Ticket Name: <%= ticket.name %></h3>
+                        <p><strong>Description: </strong> <%= ticket.description %></p>
+                    <% end %>
+                <% end %>
+
+
+            <% end %>
+          </div>
+        </div>
+
       </div>
       <div class="tab-pane" id="messages">messages...</div>
       <div class="tab-pane" id="settings">settings...</div>
