@@ -1,0 +1,16 @@
+<% tickets.each do |ticket| %>
+    <% if (ticket.user_id == current_user.id) && ( ticket.user_open == true && ticket.owner_open == true ) %>
+        <div class="row">
+          <div class="col-xs-8">
+            <h3>Ticket Name: <%= ticket.name %></h3>
+            <p><strong>Description: </strong> <%= ticket.description %></p>
+          </div>
+          <div class="col-xs-4">
+            <h5>Date Created: <span class="label label-default"><%= ticket.created_at %></span>
+
+            </h5>
+            <h5>Last Updated: <span class="label label-default"><%= ticket.updated_at %></span></h5>
+          </div>
+        </div>
+    <% end %>
+<% end %>

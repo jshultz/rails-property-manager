@@ -35,7 +35,7 @@
               <div class="col-xs-12">
                 <div class="row">
                   <div class="col-xs-1">
-                    <span class="opentickets">
+                    <span class="opentickets alert-info">
                       <%= property.tickets.size %>
                     </span>
                   </div>
@@ -49,13 +49,12 @@
                   <div class="col-xs-8 col-xs-push-2">
                     <div class="row">
                       <div class="col-xs-12">
-                        <% property.tickets.each do |ticket| %>
-                            <% if ticket.user_id == current_user.id %>
-                                <h3>Ticket Name: <%= ticket.name %></h3>
-                                <p><strong>Description: </strong> <%= ticket.description %></p>
-                            <% end %>
-                        <% end %>
+
+                        <%= render :partial => 'admins/admin_tickets', :locals => { tickets: property.tickets } %>
+
                       </div>
+
+
                     </div>
                   </div>
                 </div>
@@ -76,12 +75,7 @@
           <div class="col-xs-12">
             <% @properties.each do |property| %>
 
-                <% property.tickets.each do |ticket| %>
-                    <% if (ticket.user_id == current_user.id) && ( ticket.user_open == true && ticket.owner_open == true ) %>
-                        <h3>Ticket Name: <%= ticket.name %></h3>
-                        <p><strong>Description: </strong> <%= ticket.description %></p>
-                    <% end %>
-                <% end %>
+                <%= render :partial => 'admins/admin_tickets', :locals => { tickets: property.tickets } %>
 
 
             <% end %>
