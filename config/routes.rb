@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :ticket_comments
+
+  resources :create_ticket_comments
+
   resources :tickets
 
   resources :properties

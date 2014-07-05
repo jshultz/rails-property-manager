@@ -12,5 +12,17 @@
             <h5>Last Updated: <span class="label label-default"><%= ticket.updated_at %></span></h5>
           </div>
         </div>
+        <div class="row ticketrow" data-property="<%= ticket.id %>">
+          <div class="col-xs-10 col-xs-push-2">
+            <%= render :partial => '/ticket_comments/form', locals: {  ticket_comment: TicketComment.new, ticket_id: ticket.id } %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-10 col-xs-push-2">
+            <% ticket.ticket_comments.each do |comment| %>
+            <p><%= comment.comment %></p>
+            <% end %>
+          </div>
+        </div>
     <% end %>
 <% end %>

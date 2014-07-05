@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140701211940) do
+ActiveRecord::Schema.define(version: 20140705171651) do
 
   create_table "properties", force: true do |t|
     t.string   "business_name"
@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(version: 20140701211940) do
     t.integer  "property_photo_file_size"
     t.datetime "property_photo_updated_at"
   end
+
+  create_table "ticket_comments", force: true do |t|
+    t.text     "comment"
+    t.integer  "ticket_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ticket_comments", ["ticket_id"], name: "index_ticket_comments_on_ticket_id"
 
   create_table "tickets", force: true do |t|
     t.string   "name"
